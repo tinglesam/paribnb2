@@ -11,9 +11,10 @@ class User <  ActiveRecord::Base
     create! do |u|
      u.first_name = auth_hash["info"]["first_name"]
      u.last_name = auth_hash["info"]["last_name"]
-     u.birthday = auth_hash["info"]["birthday"]
+     
+     u.image = auth_hash["info"]["image"]
      u.email = auth_hash["extra"]["raw_info"]["email"]
-     u.encrypted_password = [*('A'..'Z')].sample(8).join
+     u.password = [*('A'..'Z')].sample(8).join
      u.authentications<<(authentication)
     end
   end

@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.timestamps null: false
       t.string :first_name, null: false
       t.string :last_name, null: false
-      t.string :birthday, null:false
+      t.date :birthday, null:false
       t.string :email, null: false
       t.string :encrypted_password, limit: 128, null: false
       t.string :confirmation_token, limit: 128
