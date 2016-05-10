@@ -7,11 +7,11 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">PareBNB</a>
+				<div class="navbar-brand" > <%= link_to "PareBNB", "/"%> </div>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
+					<!-- <li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i> Listings <span class="badge">0</span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#"><i class="fa fa-fw fa-tag"></i> <span class="badge">Music</span> sayfası <span class="badge">Video</span> sayfasında etiketlendi</a></li>
@@ -19,74 +19,80 @@
 							<li><a href="#"><i class="fa fa-fw fa-thumbs-o-up"></i> <span class="badge">Video</span> sayfasında iletiniz beğenildi</a></li>
 							<li><a href="#"><i class="fa fa-fw fa-thumbs-o-up"></i> <span class="badge">Game</span> sayfasında iletiniz beğenildi</a></li>
 						</ul>
-					</li>
-					<li class="active"><a href="#">Profile <span class="sr-only">(current)</span></a></li>
-					<li class="dropdown">
+					</li> -->
+					
+					<li class="active"> <%=link_to "Listings", listings_path %> <span class="sr-only">(current)</span></li>
+
+					<% if signed_in? %>
+						<li class="active"><a href="#"> Hi, <%=current_user.first_name%>! <span class="sr-only">(current)</span></a></li>
+
+							<li class="active"> <%=link_to t(".sign_out"), sign_out_path %> <span class="sr-only">(current)</span></li>
+							
+      <% else %>
+						<li class="dropdown">
 
 
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">LOGIN <span class="caret"></span></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							
+	    		
+	      						Sign in 
+	    			
+
+							<span class="caret"></span></a>
 
 
 
 
 
-						<ul id="login-dp" class="dropdown-menu" role="menu">
-							<li>
-								<div class="row">
-									<div class="col-md-12">
-										Login via
-										<div class="social-buttons">
-											<a href="#" class="btn btn-fb"> <i class="fa fa-facebook"></i> Facebook</a>
+							<ul id="login-dp" class="dropdown-menu" role="menu">
+								<li>
+									<div class="row">
+										<div class="col-md-12">
+											Login via
+											<div class="social-buttons">
+
+											 <%= link_to "Facebook", "/auth/facebook", class:"btn btn-fb" %>
+											</div>
+									
+											or
+											<div class="form" id="login-nav">
+
+												<%= form_for :session, url: session_path do |form| %>
+
+
+
+												
+
+												<div class="form-group" >
+												<label class="sr-only" for="exampleInputEmail2">Email address</label>
+												<%= form.text_field :email ,class:"form-control" ,id:"exampleInputEmail2", placeholder:"Email Address" %>
+												</div>
+									
+												<div class="form-group">
+													<label class="sr-only" for="exampleInputPassword2"> Password</label>
+													<%= form.password_field :password, class:"form-control", id:"exampleInputPassword2", placeholder:"Password"%>
+												</div>
+
+												<div class="other-links">
+												
+													<%= link_to t(".forgot_password"), new_password_path %>
+												</div>
+												<div class="submit-field">
+													<%= form.submit %>
+												</div>
+											</div>
 										</div>
-										<%= link_to "facebook", "/auth/facebook" %>
-										or
-										<form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-
-											<%= form_for :session, url: session_path do |form| %>
-
-
+										<div class="bottom text-center">
+											New? 
+											<%= link_to t(".sign_up"), sign_up_path %>
 											
 
-											
-
-											<div class="other-links">
-												<% if Clearance.configuration.allow_sign_up? %>
-												<%= link_to t(".sign_up"), sign_up_path %>
-												<% end %>
-												<%= link_to t(".forgot_password"), new_password_path %>
-											</div>
-
-
-
-
-
-
-											
-
-											<div class="form-group" >
-											<label class="sr-only" for="exampleInputEmail2">Email address</label>
-											<%= form.text_field :email ,class:"form-control" ,id:"exampleInputEmail2", placeholder:"Email Address" %>
-											</div>
-								
-											<div class="form-group">
-												<label class="sr-only" for="exampleInputPassword2"> Password</label>
-												<%= form.password_field :password, class:"form-control", id:"exampleInputPassword2", placeholder:"Password"%>
-											</div>
-											<div class="submit-field">
-												<%= form.submit %>
-											</div>
-										</form>
+										</div>
 									</div>
-									<div class="bottom text-center">
-										New? <% if Clearance.configuration.allow_sign_up? %>
-										<%= link_to t(".sign_up"), sign_up_path %>
-										<% end %>
-
-									</div>
-								</div>
-								<% end %>
-							</li>
-						</ul>
+									<% end %>
+								</li>
+							</ul>
+						<% end -%>
 					</li>
 				</ul>
 				<form class="navbar-form navbar-right search-form" role="search">

@@ -51,7 +51,6 @@ class Clearance::UsersController < ApplicationController
    password = user_params.delete(:password)
    first_name = user_params.delete(:first_name)
    last_name = user_params.delete(:last_name)
-   birthday = user_params.delete(:birthday)
   
 
    Clearance.configuration.user_model.new(user_params).tap do |user|
@@ -59,7 +58,6 @@ class Clearance::UsersController < ApplicationController
      user.password = password
      user.first_name = first_name
      user.last_name = last_name
-     user.birthday = birthday
    
    end
  end
