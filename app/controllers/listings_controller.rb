@@ -17,7 +17,7 @@ class ListingsController < ApplicationController
 
 	def create
 		@listing = current_user.listings.new(listing_params)
-		byebug
+		
 		@listing.dates = (params[:listing][:start_date]..params[:listing][:end_date]).map(&:to_s)
 		if @listing.save
 	      flash[:success] = "Thank you for your listing"
@@ -27,12 +27,35 @@ class ListingsController < ApplicationController
 	    end
 	end
 
+	def edit
+    	@listing = Listing.find(params[:id])
+
+  	end
+
+  def update
+  	byebug
+    @listing = Listing.find(params[:id])
+
+    if @listing.update_attributes(listing_params)
+    byebug
+      redirect_to @listing
+
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    Listing.find(params[:id]).destroy
+    flash[:success] = "Listing deleted"
+    redirect_to listings_url
+  end
 
 
 	private
 
 	def listing_params
-		params.require(:listing).permit(:user_id, :name, :address, :people, :amenities, :start_date, :end_date, :created_at, :updated_at)
+		params.require(:listing).permit(:user_id, :name, :price, :address, :people, :amenities, :start_date, :end_date, {images:[]})
 	end
 
 

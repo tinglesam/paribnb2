@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+                <div class="col-md-12 col-xs-12 col-sm-12">
+                	<div class="artist-data pull-left">
+                    	<div class="artst-pic pull-left">
+                    		<!-- <span class="artst-like"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i></a></span>
+                    		<span class="artst-share"><a href="#"><i class="glyphicon glyphicon-share"></i></a></span>
+                    		<span class="artst-plus"><a href="#"><i class="glyphicon glyphicon-plus-sign"></i></a></span> -->
+                    		<a href="#">
+                    			<img alt="" class="img-responsive" <%= image_tag @listing.images[0].url %>  
+                    		</a>
+                    	</div>
+                        <div class="artst-prfle pull-right col-md-12 col-xs-12 col-sm-12">
+                        	<div class="art-title">
+                            	<%= @listing.name%>
+                                <span class="artst-sub"> <span class="byname"><%= @listing.address%></span> 
+                                 <span class="artst-sub"> <span class="byname"><%= @listing.amenities%></span>
+                                 <span class="artst-sub"> <span class="byname"><%= @listing.people%></span>
+                                <span class="daysago">5 Days Ago</span></span> 
+                            </div>
+                         <!--    <div class="counter-tab">
+                            	<div class="counter_comnt"><i class="glyphicon glyphicon-comment"></i> 359</div>
+                            	<div class="counter_ply"><i class="glyphicon glyphicon-play"></i> 1312</div>
+                            	<div class="counter_like"><i class="glyphicon glyphicon-heart"></i> 2256</div>
+                            </div> -->
+                            <% if current_user.id==(@listing.user_id) %>
+                            <div class="btn"><i class="icon-edit"></i> <strong><%= link_to "Edit", edit_listing_path(@listing.id) %> </strong></div>
+                            <a href="#" class="btn"><i class="icon-trash"></i> <strong> <%= link_to "delete", @listing, method: :delete, data: { confirm: "You sure?"} %>
+                                    </strong></a>
+                            
+                            <%end%>
+                            <a href="#" class="btn"><i class="icon-align-justify"></i> <strong> <%= link_to "All Listings", listings_path %> </strong></a>
+                        </div>
+                        <div class="bot-links">
+                        	<a href="#">Sit amet</a>
+                        	<a href="#">Amet</a>
+                        </div>
+                    </div>
+
+                 </div>
+                        
+               
+                
+            </div>
+</div>

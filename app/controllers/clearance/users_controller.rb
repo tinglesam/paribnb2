@@ -65,4 +65,9 @@ class Clearance::UsersController < ApplicationController
  def user_params
    params[Clearance.configuration.user_parameter] || Hash.new
  end
+
+
+ def show 
+    @user = User.find(params[:id])
+  end
 end

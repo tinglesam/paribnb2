@@ -28,6 +28,8 @@ gem "clearance"
 gem "figaro"
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem "fog-aws"
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'sprockets-rails', :require => 'sprockets/railtie'

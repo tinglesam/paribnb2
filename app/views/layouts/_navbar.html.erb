@@ -22,9 +22,9 @@
 					</li> -->
 					
 					<li class="active"> <%=link_to "Listings", listings_path %> <span class="sr-only">(current)</span></li>
-
+					<% greeting = "Hi, " << current_user.first_name << "!" %>
 					<% if signed_in? %>
-						<li class="active"><a href="#"> Hi, <%=current_user.first_name%>! <span class="sr-only">(current)</span></a></li>
+						<li class="active"> <%=link_to greeting, user_path(current_user.id) %><span class="sr-only">(current)</span></li>
 
 							<li class="active"> <%=link_to t(".sign_out"), sign_out_path %> <span class="sr-only">(current)</span></li>
 							
